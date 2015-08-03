@@ -3,28 +3,25 @@ class PinsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
   before_action :correct_user, only: [:edit, :update, :destroy]
 
-  # GET /pins
-  # GET /pins.json
+  
   def index
     @pins = Pin.all
   end
 
-  # GET /pins/1
-  # GET /pins/1.json
+  
   def show
   end
 
-  # GET /pins/new
+ 
   def new
     @pin = current_user.pins.build
   end
 
-  # GET /pins/1/edit
+  
   def edit
   end
 
-  # POST /pins
-  # POST /pins.json
+ 
   def create
     @pin = current_user.pins.build(pin_params)
      if @pin.save
@@ -34,25 +31,21 @@ class PinsController < ApplicationController
      end
   end
 
-  # PATCH/PUT /pins/1
-  # PATCH/PUT /pins/1.json
+ 
   def update
     if @pin.update(pin_params)
       redirect_to @pin, notice: 'Pin was successfully updated.' 
     else
-      render action:edit 
+      render action: 'edit' 
     end
   end
 
-  # DELETE /pins/1
-  # DELETE /pins/1.json
   def destroy
     @pin.destroy
     redirect_to pins_url
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
     def set_pin
       @pin = Pin.find_by(id: params[:id])
     end
