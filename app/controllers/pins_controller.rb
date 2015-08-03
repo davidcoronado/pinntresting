@@ -35,11 +35,10 @@ class PinsController < ApplicationController
   # PATCH/PUT /pins/1
   # PATCH/PUT /pins/1.json
   def update
-      if @pin.update(pin_params)
-        redirect_to @pin, notice: 'Pin was successfully updated.' 
-      else
-        render :edit 
-      end
+    if @pin.update(pin_params)
+      redirect_to @pin, notice: 'Pin was successfully updated.' 
+    else
+      render :edit 
     end
   end
 
@@ -47,10 +46,7 @@ class PinsController < ApplicationController
   # DELETE /pins/1.json
   def destroy
     @pin.destroy
-    respond_to do |format|
-      format.html { redirect_to pins_url, notice: 'Pin was successfully destroyed.' }
-      format.json { head :no_content }
-    end
+    redirect_to pins_url, notice: 'Pin was successfully destroyed.' 
   end
 
   private
